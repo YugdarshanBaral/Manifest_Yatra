@@ -1,0 +1,2 @@
+# MANIFEST_CONSULTANCY1
+dynamic 

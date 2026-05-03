@@ -16,7 +16,7 @@
   <!-- NAVIGATION -->
   <nav id="mainNav">
     <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
-      <img src="${pageContext.request.contextPath}/pages/IMG_9914.PNG" class="nav-logo-emblem">
+      <img src="${pageContext.request.contextPath}/pages/IMG.PNG" class="nav-logo-emblem">
       <span class="nav-logo-text">
         <span class="nav-logo-name">Manifest <em>Yatra</em></span>
         <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
@@ -39,7 +39,7 @@
         <div class="dropdown-menu">
           <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
           <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+          <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
         </div>
       </li>
     </ul>
@@ -70,7 +70,7 @@
       <div class="drawer-sub">
         <a href="${pageContext.request.contextPath}/register">Sign Up</a>
         <a href="${pageContext.request.contextPath}/login">Login</a>
-        <a href="${pageContext.request.contextPath}/pages/admin.jsp">Login as Administrator</a>
+        <a href="${pageContext.request.contextPath}/admin.jsp">Login as Administrator</a>
       </div>
     </div>
 

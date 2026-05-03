@@ -68,12 +68,12 @@
     </a>
 
     <ul class="nav-center">
-      <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-      <li><a href="${pageContext.request.contextPath}/services.jsp">Services</a></li>
-      <li><a href="${pageContext.request.contextPath}/destination.jsp">Destinations</a></li>
-      <li><a href="${pageContext.request.contextPath}/about.jsp">About</a></li>
-      <li><a href="${pageContext.request.contextPath}/process.jsp">Process</a></li>
-      <li><a href="${pageContext.request.contextPath}/contact.jsp">Contact</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/about.jsp">About</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a></li>
 
       <li class="nav-dropdown">
         <a href="#" onclick="return false;">Account <span class="nav-dropdown-icon">▾</span></a>
@@ -86,7 +86,7 @@
     </ul>
 
     <div class="nav-cta-wrap">
-      <a href="${pageContext.request.contextPath}/contact.jsp" class="nav-cta">Free Consultation</a>
+      <a href="${pageContext.request.contextPath}/pages/contact.jsp" class="nav-cta">Free Consultation</a>
     </div>
 
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">

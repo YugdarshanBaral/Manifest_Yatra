@@ -45,7 +45,7 @@
     </ul>
 
     <div class="nav-cta-wrap">
-      <a href="${pageContext.request.contextPath}/pages/contact.jsp" class="nav-cta">Free Consultation</a>
+      <a href="${pageContext.request.contextPath}/pages/register.jsp" class="nav-cta">Free Consultation</a>
     </div>
 
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">

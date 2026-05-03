@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("userEmail", rs.getString("email"));
                 session.setAttribute("role", rs.getString("role"));
 
-                response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/pages/book.jsp");
             } else {
                 request.setAttribute("error", "Invalid email or password.");
                 request.getRequestDispatcher("/pages/login.jsp").forward(request, response);

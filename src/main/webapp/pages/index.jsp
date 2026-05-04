@@ -33,19 +33,37 @@
 
       <li class="nav-dropdown">
         <a href="#" onclick="return false;">
-          Account <span class="nav-dropdown-icon">▾</span>
+          <% if (session.getAttribute("userName") != null) { %>
+            👤 <%= session.getAttribute("userName") %>
+          <% } else { %>
+            Account
+          <% } %>
+          <span class="nav-dropdown-icon">▾</span>
         </a>
 
         <div class="dropdown-menu">
-          <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
-          <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-          <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+          <% if (session.getAttribute("userName") != null) { %>
+            <a href="${pageContext.request.contextPath}/pages/book.jsp">
+              <span class="dm-icon">📅</span> My Booking
+            </a>
+            <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">
+              <span class="dm-icon">🚪</span> Logout
+            </a>
+          <% } else { %>
+            <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
+            <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
+            <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+          <% } %>
         </div>
       </li>
     </ul>
 
     <div class="nav-cta-wrap">
-      <a href="${pageContext.request.contextPath}/pages/register.jsp" class="nav-cta">Free Consultation</a>
+      <% if (session.getAttribute("userName") != null) { %>
+        <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">My Booking</a>
+      <% } else { %>
+        <a href="${pageContext.request.contextPath}/login" class="nav-cta">Free Consultation</a>
+      <% } %>
     </div>
 
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
@@ -63,18 +81,31 @@
 
     <div class="drawer-dropdown">
       <button class="drawer-dropdown-trigger">
-        Account <span class="drawer-arrow"
-          style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
+        <% if (session.getAttribute("userName") != null) { %>
+          👤 <%= session.getAttribute("userName") %>
+        <% } else { %>
+          Account
+        <% } %>
+        <span class="drawer-arrow" style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
       </button>
 
       <div class="drawer-sub">
-        <a href="${pageContext.request.contextPath}/register">Sign Up</a>
-        <a href="${pageContext.request.contextPath}/login">Login</a>
-        <a href="${pageContext.request.contextPath}/admin.jsp">Login as Administrator</a>
+        <% if (session.getAttribute("userName") != null) { %>
+          <a href="${pageContext.request.contextPath}/pages/book.jsp">📅 My Booking</a>
+          <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">🚪 Logout</a>
+        <% } else { %>
+          <a href="${pageContext.request.contextPath}/register">Sign Up</a>
+          <a href="${pageContext.request.contextPath}/login">Login</a>
+          <a href="${pageContext.request.contextPath}/admin.jsp">Login as Administrator</a>
+        <% } %>
       </div>
     </div>
 
-    <a href="${pageContext.request.contextPath}/pages/contact.jsp" class="drawer-cta">Free Consultation &#8594;</a>
+    <% if (session.getAttribute("userName") != null) { %>
+      <a href="${pageContext.request.contextPath}/pages/book.jsp" class="drawer-cta">My Booking &#8594;</a>
+    <% } else { %>
+      <a href="${pageContext.request.contextPath}/login" class="drawer-cta">Free Consultation &#8594;</a>
+    <% } %>
   </div>
 
   <!-- HERO -->
@@ -123,17 +154,14 @@
       <div class="stat-num" data-count="50" data-suffix="+">50+</div>
       <div class="stat-label">Students Placed</div>
     </div>
-
     <div class="stat">
       <div class="stat-num" data-count="20" data-suffix="+">20+</div>
       <div class="stat-label">Countries</div>
     </div>
-
     <div class="stat">
       <div class="stat-num" data-count="98" data-suffix="%">98%</div>
       <div class="stat-label">Visa Success Rate</div>
     </div>
-
     <div class="stat">
       <div class="stat-num" data-count="100" data-suffix="+">100+</div>
       <div class="stat-label">Partner Universities</div>
@@ -152,19 +180,16 @@
         <h3>University Counselling</h3>
         <p>Personalised guidance to shortlist universities aligned with your academic profile, career goals, and budget.</p>
       </div>
-
       <div class="card">
         <div class="card-icon">📋</div>
         <h3>Application Assistance</h3>
         <p>End-to-end support including SOP writing, LOR guidance, resume building, and document verification.</p>
       </div>
-
       <div class="card">
         <div class="card-icon">🛂</div>
         <h3>Visa Processing</h3>
         <p>Expert visa counselling and documentation support for student visas across the UK, USA, Australia, Canada &amp; more.</p>
       </div>
-
       <div class="card">
         <div class="card-icon">✈️</div>
         <h3>Pre-Departure Briefing</h3>
@@ -218,7 +243,6 @@
               <p>Based in Pokhara with deep understanding of the Nepali student journey and worldwide university partnerships.</p>
             </div>
           </div>
-
           <div class="why-item">
             <div class="why-num">02</div>
             <div>
@@ -226,7 +250,6 @@
               <p>Every student gets a dedicated counsellor and a tailored roadmap — no one-size-fits-all here.</p>
             </div>
           </div>
-
           <div class="why-item">
             <div class="why-num">03</div>
             <div>
@@ -260,21 +283,18 @@
         <h4>Free Consultation</h4>
         <p>Meet our counsellors to discuss your background, goals, and destination preferences.</p>
       </div>
-
       <div class="process-step">
         <div class="step-dot"></div>
         <div class="step-num">02</div>
         <h4>Profile Assessment</h4>
         <p>We evaluate your qualifications and shortlist the best-fit universities for you.</p>
       </div>
-
       <div class="process-step">
         <div class="step-dot"></div>
         <div class="step-num">03</div>
         <h4>Application &amp; Offer</h4>
         <p>We prepare and submit applications and support you through offer letter negotiations.</p>
       </div>
-
       <div class="process-step">
         <div class="step-dot"></div>
         <div class="step-num">04</div>
@@ -302,9 +322,15 @@
     </p>
 
     <div class="reveal">
-      <a href="${pageContext.request.contextPath}/pages/contact.jsp" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
-        Book Free Consultation
-      </a>
+      <% if (session.getAttribute("userName") != null) { %>
+        <a href="${pageContext.request.contextPath}/pages/book.jsp" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
+          Book Free Consultation
+        </a>
+      <% } else { %>
+        <a href="${pageContext.request.contextPath}/login" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
+          Book Free Consultation
+        </a>
+      <% } %>
     </div>
   </section>
 

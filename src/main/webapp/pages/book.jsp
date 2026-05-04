@@ -203,90 +203,97 @@
 <body>
 
   <!-- NAVIGATION -->
-  <nav id="mainNav">
-    <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
-      <img src="${pageContext.request.contextPath}/pages/IMG.PNG" class="nav-logo-emblem">
-      <span class="nav-logo-text">
-        <span class="nav-logo-name">Manifest <em>Yatra</em></span>
-        <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
-      </span>
-    </a>
-    <ul class="nav-center">
-      <li><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
-      <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-      <li><a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a></li>
-      <li><a href="${pageContext.request.contextPath}/pages/about.jsp">About</a></li>
-      <li><a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a></li>
-      <li><a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a></li>
-      <li class="nav-dropdown">
-        <a href="#" onclick="return false;">Account <span class="nav-dropdown-icon">▾</span></a>
-        <div class="dropdown-menu">
+    <nav id="mainNav">
+  <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
+    <img src="${pageContext.request.contextPath}/pages/IMG.PNG" class="nav-logo-emblem">
+    <span class="nav-logo-text">
+      <span class="nav-logo-name">Manifest <em>Yatra</em></span>
+      <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
+    </span>
+  </a>
+
+  <ul class="nav-center">
+    <li><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/about.jsp">About</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a></li>
+
+    <li class="nav-dropdown">
+      <a href="#" onclick="return false;">
+        <% if (session.getAttribute("userName") != null) { %>
+          👤 <%= session.getAttribute("userName") %>
+        <% } else { %>
+          Account
+        <% } %>
+        <span class="nav-dropdown-icon">▾</span>
+      </a>
+      <div class="dropdown-menu">
+        <% if (session.getAttribute("userName") != null) { %>
+          <a href="${pageContext.request.contextPath}/pages/book.jsp">
+            <span class="dm-icon">📅</span> My Booking
+          </a>
+          <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">
+            <span class="dm-icon">🚪</span> Logout
+          </a>
+        <% } else { %>
           <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
           <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-          <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
-        </div>
-      </li>
-    </ul>
-    <div class="nav-cta-wrap">
-      <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">Free Consultation</a>
-    </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
+          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+        <% } %>
+      </div>
+    </li>
+  </ul>
 
-  <div class="nav-drawer" id="navDrawer">
-    <a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a>
-    <a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a>
-    <a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a>
-    <a href="${pageContext.request.contextPath}/pages/about.jsp">About</a>
-    <a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a>
-    <a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a>
-    <div class="drawer-dropdown">
-      <button class="drawer-dropdown-trigger">Account <span class="drawer-arrow" style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span></button>
-      <div class="drawer-sub">
+  <div class="nav-cta-wrap">
+    <% if (session.getAttribute("userName") != null) { %>
+      <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">My Booking</a>
+    <% } else { %>
+      <a href="${pageContext.request.contextPath}/login" class="nav-cta">Free Consultation</a>
+    <% } %>
+  </div>
+
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a>
+  <a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a>
+  <a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a>
+  <a href="${pageContext.request.contextPath}/pages/about.jsp">About</a>
+  <a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a>
+  <a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a>
+
+  <div class="drawer-dropdown">
+    <button class="drawer-dropdown-trigger">
+      <% if (session.getAttribute("userName") != null) { %>
+        👤 <%= session.getAttribute("userName") %>
+      <% } else { %>
+        Account
+      <% } %>
+      <span class="drawer-arrow" style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
+    </button>
+    <div class="drawer-sub">
+      <% if (session.getAttribute("userName") != null) { %>
+        <a href="${pageContext.request.contextPath}/pages/book.jsp">📅 My Booking</a>
+        <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">🚪 Logout</a>
+      <% } else { %>
         <a href="${pageContext.request.contextPath}/register">Sign Up</a>
         <a href="${pageContext.request.contextPath}/login">Login</a>
-        <a href="${pageContext.request.contextPath}/admin.jsp">Login as Administrator</a>
-      </div>
-    </div>
-    <a href="${pageContext.request.contextPath}/pages/book.jsp" class="drawer-cta">Free Consultation &#8594;</a>
-  </div>
-
-  <!-- HERO -->
-  <div class="book-hero">
-    <div class="book-hero-bg"></div>
-    <div class="book-hero-deco"></div>
-    <div class="book-hero-content anim-hero">
-      <p class="hero-tag">You're Logged In &amp; Ready</p>
-      <h1>Book Your<br><em>Free Consultation</em></h1>
-      <p>Tell us about your study abroad goals and one of our expert counsellors will reach out to you personally.</p>
+        <a href="${pageContext.request.contextPath}/pages/admin.jsp">Login as Administrator</a>
+      <% } %>
     </div>
   </div>
 
-  <!-- STEPS -->
-  <section style="padding: 3rem 4rem 0;">
-    <div class="steps-indicator">
-      <div class="step-badge">
-        <div class="step-circle done"></div>
-        <span class="step-label">Register</span>
-      </div>
-      <div class="step-badge">
-        <div class="step-circle done"></div>
-        <span class="step-label">Login</span>
-      </div>
-      <div class="step-badge active-step">
-        <div class="step-circle active">03</div>
-        <span class="step-label">Book</span>
-      </div>
-    </div>
-
-    <div class="user-banner reveal">
-      <div class="user-banner-icon">👤</div>
-      <div class="user-banner-text">
-        Welcome back, <strong>${not empty sessionScope.userName ? sessionScope.userName : 'Student'}</strong>!
-        You're booking a free consultation as a registered user. Your details will be saved to your profile.
-      </div>
-    </div>
-  </section>
+  <% if (session.getAttribute("userName") != null) { %>
+    <a href="${pageContext.request.contextPath}/pages/book.jsp" class="drawer-cta">My Booking &#8594;</a>
+  <% } else { %>
+    <a href="${pageContext.request.contextPath}/login" class="drawer-cta">Free Consultation &#8594;</a>
+  <% } %>
+</div>
 
   <!-- FORM -->
   <section style="padding: 1.5rem 4rem 5rem;">

@@ -141,63 +141,97 @@
 <body>
 
   <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
-  <nav id="mainNav">
-    <a href="index.jsp" class="nav-logo">
-      <img src="IMG_9914.PNG" class="nav-logo-emblem"></img>
-      <span class="nav-logo-text">
-        <span class="nav-logo-name">Manifest <em>Yatra</em></span>
-        <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
-      </span>
-    </a>
-    <ul class="nav-center">
-      <li><a href="index.jsp">Home</a></li>
-      <li><a href="services.jsp">Services</a></li>
-      <li><a href="destination.jsp">Destinations</a></li>
-      <li><a href="about.jsp">About</a></li>
-      <li><a href="process.jsp">Process</a></li>
-      <li><a href="contact.jsp">Contact</a></li>
-      <li class="nav-dropdown">
-        <a href="#" onclick="return false;">
-          Account <span class="nav-dropdown-icon">&#9662;</span>
-        </a>
-        <div class="dropdown-menu">
-          <a href="registration.jsp"><span class="dm-icon">&#x270F;&#xFE0F;</span> Sign Up</a>
-          <a href="login.jsp"><span class="dm-icon">&#x1F511;</span> Login</a>
-          <a href="admin.jsp" class="admin-link"><span class="dm-icon">&#x1F6E1;&#xFE0F;</span> Login as
-            Administrator</a>
-        </div>
-      </li>
-    </ul>
-    <div class="nav-cta-wrap">
-      <a href="contact.jsp" class="nav-cta">Free Consultation</a>
-    </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.jsp">Home</a>
-    <a href="services.jsp">Services</a>
-    <a href="destination.jsp">Destinations</a>
-    <a href="about.jsp">About</a>
-    <a href="process.jsp">Process</a>
-    <a href="contact.jsp">Contact</a>
-    <div class="drawer-dropdown">
-      <button class="drawer-dropdown-trigger">
-        Account <span class="drawer-arrow"
-          style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
-      </button>
-      <div class="drawer-sub">
-        <a href="registration.jsp">Sign Up</a>
-        <a href="login.jsp">Login</a>
-        <a href="admin.jsp">Login as Administrator</a>
+    <nav id="mainNav">
+  <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
+    <img src="${pageContext.request.contextPath}/pages/IMG.PNG" class="nav-logo-emblem">
+    <span class="nav-logo-text">
+      <span class="nav-logo-name">Manifest <em>Yatra</em></span>
+      <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
+    </span>
+  </a>
+
+  <ul class="nav-center">
+    <li><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/about.jsp">About</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a></li>
+    <li><a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a></li>
+
+    <li class="nav-dropdown">
+      <a href="#" onclick="return false;">
+        <% if (session.getAttribute("userName") != null) { %>
+          👤 <%= session.getAttribute("userName") %>
+        <% } else { %>
+          Account
+        <% } %>
+        <span class="nav-dropdown-icon">▾</span>
+      </a>
+      <div class="dropdown-menu">
+        <% if (session.getAttribute("userName") != null) { %>
+          <a href="${pageContext.request.contextPath}/pages/book.jsp">
+            <span class="dm-icon">📅</span> My Booking
+          </a>
+          <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">
+            <span class="dm-icon">🚪</span> Logout
+          </a>
+        <% } else { %>
+          <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
+          <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
+          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+        <% } %>
       </div>
+    </li>
+  </ul>
+
+  <div class="nav-cta-wrap">
+    <% if (session.getAttribute("userName") != null) { %>
+      <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">My Booking</a>
+    <% } else { %>
+      <a href="${pageContext.request.contextPath}/login" class="nav-cta">Free Consultation</a>
+    <% } %>
+  </div>
+
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a>
+  <a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a>
+  <a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a>
+  <a href="${pageContext.request.contextPath}/pages/about.jsp">About</a>
+  <a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a>
+  <a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a>
+
+  <div class="drawer-dropdown">
+    <button class="drawer-dropdown-trigger">
+      <% if (session.getAttribute("userName") != null) { %>
+        👤 <%= session.getAttribute("userName") %>
+      <% } else { %>
+        Account
+      <% } %>
+      <span class="drawer-arrow" style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
+    </button>
+    <div class="drawer-sub">
+      <% if (session.getAttribute("userName") != null) { %>
+        <a href="${pageContext.request.contextPath}/pages/book.jsp">📅 My Booking</a>
+        <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">🚪 Logout</a>
+      <% } else { %>
+        <a href="${pageContext.request.contextPath}/register">Sign Up</a>
+        <a href="${pageContext.request.contextPath}/login">Login</a>
+        <a href="${pageContext.request.contextPath}/pages/admin.jsp">Login as Administrator</a>
+      <% } %>
     </div>
-    <a href="contact.jsp" class="drawer-cta">Free Consultation &#8594;</a>
   </div>
-  <div>
-  <a href="contact.jsp" class="drawer-cta">Free Consultation →</a>
-  </div>
+
+  <% if (session.getAttribute("userName") != null) { %>
+    <a href="${pageContext.request.contextPath}/pages/book.jsp" class="drawer-cta">My Booking &#8594;</a>
+  <% } else { %>
+    <a href="${pageContext.request.contextPath}/login" class="drawer-cta">Free Consultation &#8594;</a>
+  <% } %>
+</div>
 
   <!-- ═══════════════════════ PAGE HERO ═════════════════════════ -->
   <div class="page-hero">

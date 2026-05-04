@@ -594,8 +594,7 @@
       Book your free consultation now. No fees, no pressure — just expert, honest guidance to help you plan your next
       step.</p>
     <div class="reveal">
-      <a href="contact.jsp" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">Book Free
-        Consultation</a>
+      <a href="book.jsp" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">Book Free Consultation</a>
     </div>
   </section>
 

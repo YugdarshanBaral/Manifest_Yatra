@@ -265,7 +265,7 @@
     <p style="color:var(--muted);font-size:1rem;max-width:460px;margin:0 auto 2.5rem;line-height:1.8;" class="reveal">
       Book a free, no-obligation consultation with one of our expert counsellors today.</p>
     <div class="reveal">
-      <a href="contact.jsp" class="btn-primary">Book Free Consultation</a>
+      <a href="book.jsp" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">Book Free Consultation</a>
     </div>
   </section>
 

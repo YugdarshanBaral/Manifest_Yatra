@@ -52,7 +52,9 @@
           <% } else { %>
             <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
             <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-            <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+            <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link">
+              <span class="dm-icon"></span>Admin Login
+            </a>
           <% } %>
         </div>
       </li>
@@ -71,84 +73,31 @@
     </button>
   </nav>
 
-  <div class="nav-drawer" id="navDrawer">
-    <a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a>
-    <a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a>
-    <a href="${pageContext.request.contextPath}/pages/destination.jsp">Destinations</a>
-    <a href="${pageContext.request.contextPath}/pages/about.jsp">About</a>
-    <a href="${pageContext.request.contextPath}/pages/process.jsp">Process</a>
-    <a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a>
-
-    <div class="drawer-dropdown">
-      <button class="drawer-dropdown-trigger">
-        <% if (session.getAttribute("userName") != null) { %>
-          👤 <%= session.getAttribute("userName") %>
-        <% } else { %>
-          Account
-        <% } %>
-        <span class="drawer-arrow" style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">&#9662;</span>
-      </button>
-
-      <div class="drawer-sub">
-        <% if (session.getAttribute("userName") != null) { %>
-          <a href="${pageContext.request.contextPath}/pages/book.jsp">📅 My Booking</a>
-          <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">🚪 Logout</a>
-        <% } else { %>
-          <a href="${pageContext.request.contextPath}/register">Sign Up</a>
-          <a href="${pageContext.request.contextPath}/login">Login</a>
-          <a href="${pageContext.request.contextPath}/admin.jsp">Login as Administrator</a>
-        <% } %>
-      </div>
-    </div>
-
-    <% if (session.getAttribute("userName") != null) { %>
-      <a href="${pageContext.request.contextPath}/pages/book.jsp" class="drawer-cta">My Booking &#8594;</a>
-    <% } else { %>
-      <a href="${pageContext.request.contextPath}/login" class="drawer-cta">Free Consultation &#8594;</a>
-    <% } %>
-  </div>
-
   <!-- HERO -->
-  <section id="hero"
-    style="min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:7rem 4rem 4rem;">
-    <div
-      style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(255,255,255,0.04) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(201,162,39,0.10) 0%,transparent 60%),linear-gradient(160deg,var(--bg-dark) 0%,var(--bg) 50%,var(--bg-dark) 100%);">
-    </div>
-
-    <div
-      style="position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:60vw;max-width:700px;aspect-ratio:1;border-radius:50%;border:1px solid rgba(201,162,39,0.12);background:radial-gradient(circle at 35% 35%,rgba(255,255,255,0.04),rgba(46,48,53,0.8));opacity:0.55;"
-      id="globe">
-      <div style="position:absolute;inset:10%;border-radius:50%;border:1px solid rgba(201,162,39,0.06);"></div>
-      <div style="position:absolute;inset:25%;border-radius:50%;border:1px solid rgba(201,162,39,0.05);"></div>
-      <div style="position:absolute;inset:40%;border-radius:50%;border:1px solid rgba(201,162,39,0.04);"></div>
-    </div>
+  <section id="hero" style="min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:7rem 4rem 4rem;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(255,255,255,0.04) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(201,162,39,0.10) 0%,transparent 60%),linear-gradient(160deg,var(--bg-dark) 0%,var(--bg) 50%,var(--bg-dark) 100%);"></div>
 
     <div style="position:relative;z-index:2;max-width:680px;" class="anim-hero">
-      <p
-        style="font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem;">
-        <span style="width:2.5rem;height:1px;background:var(--gold);display:inline-block;"></span>
+      <p style="font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">
         International Education Consultancy · Pokhara, Nepal
       </p>
 
       <h1 style="font-size:clamp(3.2rem,8vw,6.5rem);font-weight:300;line-height:1;">
-        Manifest
-        <em style="display:block;font-style:italic;color:var(--gold);font-weight:400;">Your Journey</em>
+        Manifest <em style="color:var(--gold);">Your Journey</em>
       </h1>
 
-      <p style="font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin:1.8rem 0 2.8rem;"
-        class="anim-hero-delay">
-        We guide ambitious students from Nepal to world-class universities abroad — with expert counselling, visa
-        support, and unwavering care every step of the way.
+      <p style="font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin:1.8rem 0 2.8rem;">
+        We guide ambitious students from Nepal to world-class universities abroad.
       </p>
 
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;" class="anim-hero-delay">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="${pageContext.request.contextPath}/pages/contact.jsp" class="btn-primary">Start Your Journey</a>
         <a href="${pageContext.request.contextPath}/pages/services.jsp" class="btn-outline">Our Services</a>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
+    <!-- STATS -->
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-num" data-count="50" data-suffix="+">50+</div>

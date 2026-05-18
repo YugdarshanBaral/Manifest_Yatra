@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,16 +16,12 @@
       color: var(--muted-light);
       margin-top: 1.2rem;
     }
-
     .switch-link a {
       color: var(--sky);
       text-decoration: none;
       font-weight: 500;
     }
-
-    .switch-link a:hover {
-      color: var(--gold);
-    }
+    .switch-link a:hover { color: var(--gold); }
 
     .back-link {
       display: inline-flex;
@@ -38,29 +35,16 @@
       margin-bottom: 2rem;
       transition: color 0.2s;
     }
-
-    .back-link:hover {
-      color: var(--sky);
-    }
-
-    .forgot-link {
-      font-size: 0.75rem;
-      color: var(--sky);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .forgot-link:hover {
-      color: var(--gold);
-    }
+    .back-link:hover { color: var(--sky); }
   </style>
 </head>
 
 <body>
 
+  <!-- NAVIGATION -->
   <nav id="mainNav">
-    <a href="${pageContext.request.contextPath}/index.jsp" class="nav-logo">
-      <img src="${pageContext.request.contextPath}/IMG_9914.PNG" class="nav-logo-emblem">
+    <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
+      <img src="${pageContext.request.contextPath}/pages/IMG.PNG" class="nav-logo-emblem">
       <span class="nav-logo-text">
         <span class="nav-logo-name">Manifest <em>Yatra</em></span>
         <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>
@@ -79,8 +63,10 @@
         <a href="#" onclick="return false;">Account <span class="nav-dropdown-icon">▾</span></a>
         <div class="dropdown-menu">
           <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
-          <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-          <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+          <a href="${pageContext.request.contextPath}/pages/login.jsp"><span class="dm-icon"></span>Login</a>
+          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link">
+            <span class="dm-icon"></span>Admin Login
+          </a>
         </div>
       </li>
     </ul>
@@ -94,30 +80,10 @@
     </button>
   </nav>
 
-  <div class="nav-drawer" id="navDrawer">
-    <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
-    <a href="${pageContext.request.contextPath}/services.jsp">Services</a>
-    <a href="${pageContext.request.contextPath}/destination.jsp">Destinations</a>
-    <a href="${pageContext.request.contextPath}/about.jsp">About</a>
-    <a href="${pageContext.request.contextPath}/process.jsp">Process</a>
-    <a href="${pageContext.request.contextPath}/contact.jsp">Contact</a>
-
-    <div class="drawer-dropdown">
-      <a class="drawer-dropdown-trigger">Account &nbsp;<span class="drawer-arrow"
-          style="font-size:0.7rem;transition:transform 0.2s;display:inline-block;">▾</span></a>
-      <div class="drawer-sub">
-        <a href="${pageContext.request.contextPath}/register"> &nbsp;Sign Up</a>
-        <a href="${pageContext.request.contextPath}/login"> &nbsp;Login</a>
-        <a href="${pageContext.request.contextPath}/admin.jsp"> &nbsp;Admin Login</a>
-      </div>
-    </div>
-
-    <a href="${pageContext.request.contextPath}/contact.jsp" class="drawer-cta">Free Consultation →</a>
-  </div>
-
+  <!-- LOGIN FORM -->
   <div class="auth-page">
     <div style="width:100%;max-width:440px;">
-      <a href="${pageContext.request.contextPath}/index.jsp" class="back-link">← Back to Home</a>
+      <a href="${pageContext.request.contextPath}/pages/index.jsp" class="back-link">← Back to Home</a>
 
       <div class="auth-card">
         <div class="auth-logo">
@@ -162,8 +128,7 @@
           </div>
 
           <div style="display:flex;align-items:center;gap:0.7rem;">
-            <input type="checkbox" id="remember" name="remember"
-              style="accent-color:var(--sky);width:15px;height:15px;" />
+            <input type="checkbox" id="remember" name="remember" style="accent-color:var(--sky);width:15px;height:15px;" />
             <label for="remember" style="font-size:0.78rem;color:var(--muted-light);cursor:pointer;">
               Remember me for 30 days
             </label>
@@ -180,7 +145,7 @@
             Are you an administrator?
           </p>
 
-          <a href="${pageContext.request.contextPath}/admin.jsp" class="btn-outline"
+          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="btn-outline"
             style="width:100%;text-align:center;display:block;padding:0.8rem;font-size:0.78rem;">
             🛡️ &nbsp;Administrator Login
           </a>
@@ -201,14 +166,14 @@
     </div>
 
     <nav class="footer-links">
-      <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
-      <a href="${pageContext.request.contextPath}/contact.jsp">Contact</a>
+      <a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a>
+      <a href="${pageContext.request.contextPath}/pages/contact.jsp">Contact</a>
     </nav>
 
     <p class="footer-copy">© 2025 Manifest Yatra International Education Pvt. Ltd.</p>
   </footer>
 
-  <script src="${pageContext.request.contextPath}/main.js"></script>
+  <script src="${pageContext.request.contextPath}/pages/main.js"></script>
 
 </body>
 </html>

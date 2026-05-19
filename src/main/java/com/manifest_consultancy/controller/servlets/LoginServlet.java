@@ -33,8 +33,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String email     = request.getParameter("email");
-        String password  = request.getParameter("password");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         boolean rememberMe = "on".equals(request.getParameter("remember"));
 
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
@@ -42,39 +42,67 @@ public class LoginServlet extends HttpServlet {
         try (Connection conn = DbConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            // Set query parameters
             ps.setString(1, email);
             ps.setString(2, password);
 
+            // Execute query
             ResultSet rs = ps.executeQuery();
 
+            // If user exists
             if (rs.next()) {
 
-                // ---- Build the session ----
+                // ==============================
+                // CREATE USER SESSION
+                // ==============================
                 HttpSession session = request.getSession(true);
-                session.setAttribute("userId",    rs.getInt("id"));
-                session.setAttribute("userName",  rs.getString("first_name"));
-                session.setAttribute("userEmail", rs.getString("email"));
-                session.setAttribute("role",      rs.getString("role"));
 
-                // ---- Handle Remember Me ----
+                session.setAttribute("userId", rs.getInt("id"));
+                session.setAttribute("userName", rs.getString("first_name"));
+                session.setAttribute("userEmail", rs.getString("email"));
+                session.setAttribute("role", rs.getString("role"));
+
+                // ==============================
+                // HANDLE REMEMBER ME COOKIE
+                // ==============================
                 if (rememberMe) {
-                    CookieUtil.addCookie(response, "rememberEmail", email, REMEMBER_ME_MAX_AGE);
+                    CookieUtil.addCookie(
+                        response,
+                        "rememberEmail",
+                        email,
+                        REMEMBER_ME_MAX_AGE
+                    );
                 } else {
                     CookieUtil.deleteCookie(response, "rememberEmail");
                 }
 
-                // ---- Redirect to book.jsp ----
-                response.sendRedirect(request.getContextPath() + "/pages/book.jsp");
+                // ==============================
+                // REDIRECT TO HOME PAGE
+                // (Changed from book.jsp to index.jsp)
+                // ==============================
+                response.sendRedirect(
+                    request.getContextPath() + "/pages/index.jsp"
+                );
 
             } else {
-                request.setAttribute("error", "Invalid email or password.");
-                request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+                // Invalid credentials
+                request.setAttribute(
+                    "error",
+                    "Invalid email or password."
+                );
+                request.getRequestDispatcher("/pages/login.jsp")
+                       .forward(request, response);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", "Login failed. Please try again.");
-            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+
+            request.setAttribute(
+                "error",
+                "Login failed. Please try again."
+            );
+            request.getRequestDispatcher("/pages/login.jsp")
+                   .forward(request, response);
         }
     }
 }

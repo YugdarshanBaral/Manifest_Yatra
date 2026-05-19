@@ -1,17 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dao.AdminDAO" %>
+<%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
   <title>Manifest Yatra – International Education Consultancy, Pokhara</title>
-  <meta name="description"
-    content="Manifest Yatra guides Nepali students to world-class universities abroad. Expert counselling, visa support & scholarship guidance — based in Pokhara, Nepal." />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+  <meta name="description" content="Manifest Yatra guides Nepali students to world-class universities abroad." />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-
 <body>
+
+<%
+    String bookingStatus = "No Booking";
+    String statusColor = "#888888";
+    
+    if (session.getAttribute("userName") != null) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        String userEmail = (String) session.getAttribute("userEmail");
+        
+        AdminDAO dao = new AdminDAO();
+        // ✅ FIX: Use the correct method from AdminDAO that fetches the history list
+        List<Map<String, String>> history = dao.getUserBookingHistory(userId, userEmail);
+        
+        // Extract the latest booking status if history records exist
+        if (history != null && !history.isEmpty()) {
+            Map<String, String> latestBooking = history.get(0); // Index 0 is the newest record due to ORDER BY submitted_at DESC
+            bookingStatus = latestBooking.get("status");
+        }
+        
+        if ("Pending".equals(bookingStatus)) {
+            statusColor = "#f5a623";
+        } else if ("Accepted".equals(bookingStatus) || "Confirmed".equals(bookingStatus)) {
+            statusColor = "#6bbf8a";
+        } else if ("Rejected".equals(bookingStatus)) {
+            statusColor = "#e07070";
+        }
+    }
+%>
 
   <!-- NAVIGATION -->
   <nav id="mainNav">
@@ -44,7 +72,8 @@
         <div class="dropdown-menu">
           <% if (session.getAttribute("userName") != null) { %>
             <a href="${pageContext.request.contextPath}/pages/book.jsp">
-              <span class="dm-icon">📅</span> My Booking
+              <span class="dm-icon">📅</span> My Booking 
+              <span style="color:<%= statusColor %>; font-size:0.85rem;">(<%= bookingStatus %>)</span>
             </a>
             <a href="${pageContext.request.contextPath}/logout" style="color:#e07070;">
               <span class="dm-icon">🚪</span> Logout
@@ -62,7 +91,9 @@
 
     <div class="nav-cta-wrap">
       <% if (session.getAttribute("userName") != null) { %>
-        <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">My Booking</a>
+        <a href="${pageContext.request.contextPath}/pages/book.jsp" class="nav-cta">
+          My Booking <span style="color:<%= statusColor %>;">(<%= bookingStatus %>)</span>
+        </a>
       <% } else { %>
         <a href="${pageContext.request.contextPath}/login" class="nav-cta">Free Consultation</a>
       <% } %>
@@ -97,7 +128,7 @@
     </div>
   </section>
 
-    <!-- STATS -->
+      <!-- STATS -->
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-num" data-count="50" data-suffix="+">50+</div>

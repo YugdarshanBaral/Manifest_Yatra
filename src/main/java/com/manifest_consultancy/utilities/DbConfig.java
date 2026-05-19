@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DbConfig {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/manifest_yatra?useSSL=false&serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://localhost:3306/consultancy_db?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASS = "";
 

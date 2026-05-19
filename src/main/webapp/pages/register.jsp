@@ -138,8 +138,8 @@
 <body>
 
   <nav id="mainNav">
-    <a href="${pageContext.request.contextPath}/index.jsp" class="nav-logo">
-      <img src="${pageContext.request.contextPath}/IMG_9914.PNG" class="nav-logo-emblem">
+    <a href="${pageContext.request.contextPath}/pages/index.jsp" class="nav-logo">
+      <img src="${pageContext.request.contextPath}/Image/IMG.PNG" class="nav-logo-emblem">
       <span class="nav-logo-text">
         <span class="nav-logo-name">Manifest <em>Yatra</em></span>
         <span class="nav-logo-sub">Intl. Education Pvt. Ltd.</span>

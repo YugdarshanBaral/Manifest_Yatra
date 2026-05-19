@@ -458,7 +458,7 @@
       Every student is different. Our counsellors will help you find the country and university that best fits your
       goals, budget, and career aspirations.</p>
     <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.jsp" class="btn-primary">Book Free Consultation</a>
+      <a href="register.jsp" class="btn-primary">Book Free Consultation</a>
       <a href="services.jsp" class="btn-outline">View Our Services</a>
     </div>
   </section>

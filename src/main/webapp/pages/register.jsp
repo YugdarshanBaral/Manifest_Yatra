@@ -159,7 +159,7 @@
         <div class="dropdown-menu">
           <a href="${pageContext.request.contextPath}/register"><span class="dm-icon"></span>Sign Up</a>
           <a href="${pageContext.request.contextPath}/login"><span class="dm-icon"></span>Login</a>
-          <a href="${pageContext.request.contextPath}/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
+          <a href="${pageContext.request.contextPath}/pages/admin.jsp" class="admin-link"><span class="dm-icon"></span>Admin Login</a>
         </div>
       </li>
     </ul>
